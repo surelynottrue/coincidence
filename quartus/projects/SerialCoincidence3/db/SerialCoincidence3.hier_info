@@ -1,0 +1,117 @@
+|SerialCoincidence3
+clk => clk.IN2
+TxD_start => always0.IN1
+TxD_start => TxD_state.OUTPUTSELECT
+TxD_start => TxD_state.OUTPUTSELECT
+TxD_start => TxD_state.OUTPUTSELECT
+TxD_start => TxD_state.OUTPUTSELECT
+TxD_start => TxD_done.OUTPUTSELECT
+a => a.IN1
+b => b.IN1
+TxD <= TxD.DB_MAX_OUTPUT_PORT_TYPE
+TxD_done <= TxD_done~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialCoincidence3|BaudTickGen:tickgen
+clk => Acc[1].CLK
+clk => Acc[2].CLK
+clk => Acc[3].CLK
+clk => Acc[4].CLK
+clk => Acc[5].CLK
+clk => Acc[6].CLK
+clk => Acc[7].CLK
+clk => Acc[8].CLK
+clk => Acc[9].CLK
+clk => Acc[10].CLK
+clk => Acc[11].CLK
+clk => Acc[12].CLK
+clk => Acc[13].CLK
+clk => Acc[14].CLK
+clk => Acc[15].CLK
+clk => Acc[16].CLK
+clk => Acc[17].CLK
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+tick <= Acc[17].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialCoincidence3|AndGate:andinst
+clk => dataclk~reg0.CLK
+inA => always0.IN0
+inA => always0.IN1
+inB => always0.IN1
+dataclk <= dataclk~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialCoincidence3|ByteTickGen:byteinst
+bitclk => interrupt~reg0.CLK
+bitclk => increment[0].CLK
+bitclk => increment[1].CLK
+bitclk => increment[2].CLK
+bitclk => increment[3].CLK
+bytetick <= <GND>
+interrupt <= interrupt~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialCoincidence3|Counter:counterinst
+dataclk => counter[0].CLK
+dataclk => counter[1].CLK
+dataclk => counter[2].CLK
+dataclk => counter[3].CLK
+dataclk => counter[4].CLK
+dataclk => counter[5].CLK
+dataclk => counter[6].CLK
+dataclk => counter[7].CLK
+interrupt => counter.OUTPUTSELECT
+interrupt => counter.OUTPUTSELECT
+interrupt => counter.OUTPUTSELECT
+interrupt => counter.OUTPUTSELECT
+interrupt => counter.OUTPUTSELECT
+interrupt => counter.OUTPUTSELECT
+interrupt => counter.OUTPUTSELECT
+interrupt => counter.OUTPUTSELECT
+data <= counter[0].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialCoincidence3|SendData:sendinst
+byteclk => outdata[0].CLK
+byteclk => outdata[1].CLK
+byteclk => outdata[2].CLK
+byteclk => outdata[3].CLK
+byteclk => outdata[4].CLK
+byteclk => outdata[5].CLK
+byteclk => outdata[6].CLK
+byteclk => outdata[7].CLK
+data[0] => outdata[0].DATAIN
+data[1] => outdata[1].DATAIN
+data[2] => outdata[2].DATAIN
+data[3] => outdata[3].DATAIN
+data[4] => outdata[4].DATAIN
+data[5] => outdata[5].DATAIN
+data[6] => outdata[6].DATAIN
+data[7] => outdata[7].DATAIN
+dataout[0] <= outdata[0].DB_MAX_OUTPUT_PORT_TYPE
+dataout[1] <= outdata[1].DB_MAX_OUTPUT_PORT_TYPE
+dataout[2] <= outdata[2].DB_MAX_OUTPUT_PORT_TYPE
+dataout[3] <= outdata[3].DB_MAX_OUTPUT_PORT_TYPE
+dataout[4] <= outdata[4].DB_MAX_OUTPUT_PORT_TYPE
+dataout[5] <= outdata[5].DB_MAX_OUTPUT_PORT_TYPE
+dataout[6] <= outdata[6].DB_MAX_OUTPUT_PORT_TYPE
+dataout[7] <= outdata[7].DB_MAX_OUTPUT_PORT_TYPE
+
+

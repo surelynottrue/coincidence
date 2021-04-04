@@ -1,0 +1,104 @@
+|SerialCoincidence2
+clk => clk.IN2
+TxD_start => always0.IN1
+TxD_start => TxD_state.OUTPUTSELECT
+TxD_start => TxD_state.OUTPUTSELECT
+TxD_start => TxD_state.OUTPUTSELECT
+TxD_start => TxD_state.OUTPUTSELECT
+TxD_start => TxD_done.OUTPUTSELECT
+a => a.IN1
+b => b.IN1
+TxD <= TxD.DB_MAX_OUTPUT_PORT_TYPE
+TxD_done <= TxD_done~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialCoincidence2|AndGate:andinst
+clk => ~NO_FANOUT~
+bitclk => data[0]~reg0.CLK
+bitclk => data[1]~reg0.CLK
+bitclk => data[2]~reg0.CLK
+bitclk => data[3]~reg0.CLK
+bitclk => data[4]~reg0.CLK
+bitclk => data[5]~reg0.CLK
+bitclk => data[6]~reg0.CLK
+bitclk => data[7]~reg0.CLK
+inA => ~NO_FANOUT~
+inB => ~NO_FANOUT~
+data[0] <= data[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[1] <= data[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[2] <= data[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[3] <= data[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[4] <= data[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[5] <= data[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[6] <= data[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[7] <= data[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SerialCoincidence2|SendData:sendinst
+bitclk => ~NO_FANOUT~
+data[0] => ~NO_FANOUT~
+data[1] => ~NO_FANOUT~
+data[2] => ~NO_FANOUT~
+data[3] => ~NO_FANOUT~
+data[4] => ~NO_FANOUT~
+data[5] => ~NO_FANOUT~
+data[6] => ~NO_FANOUT~
+data[7] => ~NO_FANOUT~
+dataout[0] <= <GND>
+dataout[1] <= <GND>
+dataout[2] <= <GND>
+dataout[3] <= <GND>
+dataout[4] <= <GND>
+dataout[5] <= <GND>
+dataout[6] <= <GND>
+dataout[7] <= <GND>
+
+
+|SerialCoincidence2|BaudTickGen:tickgen
+clk => Acc[0].CLK
+clk => Acc[1].CLK
+clk => Acc[2].CLK
+clk => Acc[3].CLK
+clk => Acc[4].CLK
+clk => Acc[5].CLK
+clk => Acc[6].CLK
+clk => Acc[7].CLK
+clk => Acc[8].CLK
+clk => Acc[9].CLK
+clk => Acc[10].CLK
+clk => Acc[11].CLK
+clk => Acc[12].CLK
+clk => Acc[13].CLK
+clk => Acc[14].CLK
+clk => Acc[15].CLK
+clk => Acc[16].CLK
+clk => Acc[17].CLK
+clk => Acc[18].CLK
+clk => Acc[19].CLK
+clk => Acc[20].CLK
+clk => Acc[21].CLK
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+enable => Acc.OUTPUTSELECT
+tick <= Acc[21].DB_MAX_OUTPUT_PORT_TYPE
+
+

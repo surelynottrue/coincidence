@@ -1,0 +1,432 @@
+
+\documentclass{double}
+\DeclareMathOperator{\arccot}{arccot}
+\begin{document}
+\title{Studying $\alpha - \gamma$ coincidence for Am-241 using CSpark's dual channel MCA, and experiments with FPGA}
+\author{Spandan Anupam\\%
+\href{https://github.com/surelynottrue/}{GitHub}}
+\date{%
+	\small\itshape School of Physical Sciences\\%
+	\normalfont National Institute of Science Education and Research\\[2ex]%
+	\normalsize\today}
+\maketitle
+
+\begin{multicols*}{2}
+\tableofcontents
+
+\section{Objective}
+The aim of the experiment is to understand and study
+coincidence spectra for the $^{241}$Am sample using the
+apparatus that we have around. I will be following the
+parent paper \cite{vret}, and will be relying heavily on
+Filipe et al's paper \cite{filipe} for the theoretical
+front.
+
+\section{Apparatus}
+\begin{enumerate}
+    \item Am-241 source
+    \item CSpark dual channel MCA
+    \item Vacuum chamber with an integrated photodiode
+    \item Gamma scintillation detector
+    \item PHYWE signal preamplifier (for the alpha setup)
+    \item PHYWE Multi channel analyser (only for the amplification)
+    \item Single channel analyser with an integrated HV power source for the gamma setup
+    \item Vacuum pump and monitor
+    \item BNC Cables
+    \item Aluminum foil and a blackout cover
+    \item Platforms
+\end{enumerate}
+
+\section{Theory}
+\subsection{Field Programmable Gate Array}
+In this report, we will be talking mostly about studying alpha gamma coincidence as the title says, but since this project was initially about using the
+provided Intel (Alterra) FPGA \cite{alterra}, I will be noting down some of the basics of what we were able to learn and do during our time with the board. Please keep in mind that since what we did concerned Intel IPs and lots of custom code, documenting exactly what we did will require us to write a whole new report just for that. Instead, I will note down why we couldn't go ahead with using a FPGA this time around. 
+
+\subsubsection{Transfer speeds} We tried to work with two
+kinds of transfer protocols, RS232 and UDP (ethernet). For
+the most part, we understood what RS232 does \cite{fpga}, and were able to implement the transfer, and capture side of things quite smoothly. The thing about this is though, that RS232 supports $10,473$ bits per second of transfer speeds. Meaning we can only send one bit per microsecond. This is absolutely not useful for our cause, as we need nanosecond transfer speeds, which is possible in ethernet implementations.
+
+We couldn't give much time for the ethernet implementation, instead, we were able to find an elegant implementation of the same, and were able to confirm that this is infact, quite possible. This is of no use though, because we had one more roadblock that made us abandon this avenue.
+
+\subsubsection{Analog to digital conversion} We must understand that for getting data from the amplifier to the FPGA, we need to convert the base 10 voltage values to base 2 values that can be read by the GPIO pins on the board itself. But for that purpose, we will need a high speed ADC, which we unfortunately did not have. If we interface a say 13 bit ADC to the GPIO header, we can then quite easily set bin boundaries and make a MCA on the FPGA itself, which would be quite fast. We have submitted suggestions for ADCs, which can be included in the experiments that may be conducted in the next semester.
+
+
+The code for all of this, can be found on my
+\href{https://github.com/surelynottrue/coincidence}{repository} and the \href{https://github.com/alexforencich/verilog-ethernet/}{\texttt{verilog-ethernet} repository} authored by Alex Forencich.
+
+\subsection{Amerecium Decay}
+$^{241}$Am has quite a number of possible energies for the
+alpha particle, while the decay to $^{237}$Np is being
+completed. Each possibility here, will be associated with a
+different excited state of $^{237}$Np, which is then
+deexcited, while releasing a gamma particle of the
+corresponding energy. The decay scheme is represented in
+figure below.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\columnwidth]{images/decay.pdf}
+	\caption{Decay scheme, showing the many $\alpha$ decays
+    and the associated nuclear isomers of Np}
+    \label{decay}
+\end{figure}
+Out of the energies, we will be seeing only the transitions
+that are the most possible, which, for us here, is what I
+have labelled \texttt{a} and \texttt{b}. 'b' holds the crown
+for the most probable $\alpha$ transition with the
+probability of 84.8\% and then comes 'a' with the
+probability of 13.1\%. Each one of the alpha particle
+ejected makes a different (out of the 4) nuclear isomer. One
+of them, associated with the `b' transition, makes the most
+stable isomer. We call it \emph{metastable}, as its halflife is in
+the order of ns, instead of \emph{prompt} isomers, which
+stay back in the order of ps. which others are. Most of what
+we see in gamma energy comes to this energy level, stays
+there for a while, and then decays with a half-life of
+$67.2$ ns
+
+\subsection{Setup}
+We use a setup where we use a NaI scintillation detector for
+gamma detection, and a solid state photodiode for the alpha
+detection. We pass them separately through amplifiers and
+then pass it to our dual channel MCA.
+
+For the $\alpha$ readings, we pass it through a
+preamplifier, that inverts the signal and sends it over to
+two daisy chained amplifiers. They are so, because we didn't
+have enough amplification to bring up the voltage of the
+alpha signals. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\columnwidth]{images/detectors.pdf}
+    \caption{The most general detector setup}
+    \label{detect}
+\end{figure}
+
+Here in this diagram, I have represented a very simplified
+view of two detectors facing a source, and I want to
+calculate the coicidence counts for different relative
+angles. One of the detectors, $D1$, is fixed, and the other
+moves around. The angles that I will be mentioning have been
+mentioned in the figure itself. 
+
+We will start by calculating the angles $\beta$. For any
+given detector, say $D1$, I can say that:
+\begin{align}
+   tan \beta_1 = \frac{r_1}{d_1}
+\end{align}
+\noindent Where $r1$ is the radius of the face of the detector and
+$d1$ is the distance of the face from the source. Similary,
+for the second detector, we can say:
+\begin{align}
+   tan \beta_2 = \frac{r_2}{d_2}
+\end{align}
+
+\noindent The counting rate ($s^{-1}$) for any detector can
+be given by:
+\begin{equation}
+    N = A\epsilon \frac{\Omega}{4\pi}
+\end{equation}
+\noindent Where $A$ is the number of gamma rays emitted by
+the radioactive source, $\epsilon$ is the efficiency of the
+detector, and $\frac{\Omega}{4\pi}$ is the fraction of the
+solid angle subtended by the detector face on the point
+source (for our purposes now). This ratio is also called the
+\emph{geometrical efficiency} of the detector. Of course
+here, the `spherical cap', as we call the subtended small
+cap from the detector face, has an area of $2\pi
+R^2(1-cos\beta)$. We get that using a very simple integral:
+\begin{align}
+    I &= R^2 \int_{\phi = 0}^{2\pi} d\phi \int _{cos \beta}^{1}
+    d(cos\theta) \nonumber\\
+    &= 2\pi R^2 (1 - cos\beta)
+\end{align}
+\noindent Now we can say here that our efficiency comes down
+to:
+\begin{equation}
+    \frac{\Omega}{4\pi} = \frac{1}{2}(1-cos\beta)
+\end{equation}
+\noindent Typically, the values of $\beta$ are small. Which
+means that the radius of the detector is small, compared to
+the distance from the source. Smaller values mean a smaller
+geometrical efficiency, but a higher angular resolution.
+
+Consider here, that we have two rays, one alpha, and one
+gamma ray being emitted from the source. We are assuming
+that $\alpha$ is detected by $D1$ and $\gamma$ by $D2$. Now
+these can be either \emph{correlated} or
+\emph{uncorrelated}. If both the detections occur within a
+small delay window, they are said to be \emph{temporally
+coincident}. The relative probability that the gamma will be
+emitted at an angle $\theta$ w.r.t the $\alpha$ is given by
+$W(\theta)$, and it's called the angular distribution. Given
+that nuclear spins and energy conservation comes to play
+here, the angles will be relative to the underlying physics
+in play here. I could not go into much detail here, and I
+will leave the function at $W(\theta)$ now. 
+
+Circling back, we come to the two detector setup again.
+Here, I have, the counting rates as:
+
+\begin{align}
+    N_1 &= A\epsilon_1 \frac{\Omega_1}{4\pi} \nonumber\\
+    N_2 &= A\epsilon_2 \frac{\Omega_2}{4\pi}
+\end{align}
+
+If the rays are uncorrelated, the 'true' coincidences will
+be given by:
+
+\begin{equation}
+    C_\nu = A \epsilon_1 \epsilon_2 \ \frac{\Omega_2}{4\pi}
+    \frac{\Omega_2}{4\pi}
+\end{equation}
+
+We are assuming that at the angle that we are keeping the
+detectors, we will catch correlated rays. For a given angle,
+we will have a critical angle and an overlap between the
+spherical caps. The overlap, which we call $\Delta \Omega$,
+is what we are looking for. Because then, for correlated
+events, we will have:
+\begin{equation}
+    C_C = A \epsilon_1 \epsilon_2 \frac{\Delta \Omega}{4 \pi}
+\end{equation}
+
+This calculation has been done with the help of Filipe et
+al, and with a small addition, we can notice how his method
+can be extended to include all angles. We will go on a small
+geometric digression here.
+
+For making the problem a bit simpler, we take note of the
+fact that no matter what angle the particles are emitted, we
+will have the same form of equations. To understand this a
+bit better, we conduct a thought experiment. The
+$\frac{\Delta \Omega}{4\pi}$ is proportional to the
+difference in the area of the immovable detector and the
+\emph{ghost area} of the movable detector. We can understand
+this as if we have a mirror at an angle dependent on the
+angle between the consecutive correlated emissions. So if we
+have a alpha, and then a gamma being let out with a relative
+angle of $\theta$, then we will have a mirror at an angle of
+$\frac{\pi}{2} - \frac{\theta}{2}$, facing the alpha detector. This
+can be understood better by looking at the diagram in
+figure \ref{detect}. Essentially, if we have both of the detectors at a
+relative angle of $\theta$, their sperical caps will match
+perfectly, thus showing us that that angle is the one we
+will see maximum coincidence counts at.
+
+After that, we can see that at any other angle, we will have
+the exact same situation. The angle $\alpha$ that we take as
+the amount of rotation for $D2$, is only taken from the
+proper axis, that is at $\theta$ from the $D1$ detector.
+With that in mind, we will go forward and set the angle here
+to be $\pi$, as that makes it easier for us to imagine
+scenarios. Further, just to make everyone's life simpler,
+and also because of the fact that we do not have any actual
+measurements for this part, I am making them be at the same
+distances from the source, and allowing them to have the
+same $\beta$. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\columnwidth]{images/diag.pdf}
+    \caption{Detectors in XY plane}
+    \label{diag}
+\end{figure}
+
+With that in mind, we can define our coordinate system and
+place the center of the face of the fixed detector at
+$(d\sin(\alpha/2), -d\cos(\alpha/2), 0)$ and the movable
+detector at $(d\sin(\alpha/2), d\cos(\alpha/2), 0)$. That will
+make the reflection to come at $(-d\sin(\alpha/2),
+-d\cos(\alpha/2), 0)$.
+
+Once we have the coordinates, calculating P and Q in the
+graph is a piece of cake. We have:
+\begin{align}
+    P &= (-R(\beta-\frac{\alpha}{2}),
+    -R\cos(\beta-\frac{\alpha}{2}), 0) \\
+    R &= (R(\beta+\frac{\alpha}{2}),
+    -R\cos(\beta+\frac{\alpha}{2}), 0)
+\end{align}
+\noindent The equation of the plane perpindicular to the XY
+plane will be given by:
+\begin{equation}
+    y =
+    \tan(\frac{\alpha}{2})(x+R\sin(\beta-\frac{\alpha}{2})) -
+    R\cos(\beta-\frac{\alpha}{2})
+\end{equation}
+
+We wish to compute the intersection of the two spherical
+caps, which as you would imagine, can be divided into
+quadrants and will have the same area in all four of those.
+If we pick one of the quadrants, we will have:
+
+\begin{align}
+    -\sqrt{R^2-x^2} \leq y &\leq
+    \tan(\frac{\alpha}{2})(x+R\sin(\beta-\frac{\alpha}{2}))
+    \nonumber\\
+    &- R\cos(\beta-\frac{\alpha}{2}) \\
+    - R\sin(\beta-\frac{\alpha}{2}) \leq x &\leq 0
+\end{align}
+
+We can then proceed to calculate the area using the usual
+surface integral, with the small area:
+\begin{equation}
+    ds = \frac{R}{\sqrt{R^2-x^2-y^2}}
+\end{equation}
+
+The area is then given by (with R set to be 1), as we need
+the solid angle $\Delta \Omega$ given by:
+\begin{equation}
+    4\int_{-\sin(\beta-\frac{\alpha}{2})}^{0}
+    \int_{-sqrt{1-x^2}}^{\tan(\frac{\alpha}{2})(x+\sin(\beta -
+    \frac{\alpha}{2}) - \cos(\beta -\frac{\alpha}{2}))}
+    \frac{1}{\sqrt{1-x^2-y^2}} dy dx
+\end{equation}
+
+On integrating the equation above, we get a very complicated
+solution:
+\begin{align}
+    4(\arccot&\left(\frac{\sqrt{2}\sin\frac{\left|\alpha\right|}{2}}{\sqrt{\cos\alpha-\cos2\beta}}\right)
+    \nonumber \\&-\arccot\left(\frac{\sqrt{2}\cos\beta\sin\frac{\left|\alpha\right|}{2}}{\sqrt{\cos\alpha-\cos2\beta}}\right)
+    \cos\beta)
+    \label{eq:delom}
+\end{align}
+
+We see that we get for a given value of $\beta$, we obtain a
+periodic function of $\alpha$, with a period of $2\pi$. In
+the neighbourhood of $\alpha=0$, we see that the function is
+positive and defined only for $\alpha \leq 2\beta$. At
+$2\beta$, the function vanishes, which turns out to be our
+critical angle. When we take $\beta \rightarrow 0$, we have
+the highest angular resolution, and the rate of coincidences
+matches the angular distribution function.
+
+For our case, if we are assuming that we have a distribution
+of $\theta$, instead of a solid single value, we will have
+the same expression for every angle. The difference there,
+will be that $\alpha \rightarrow \alpha_\theta$, where
+$\theta$ is the relative angle between the particles. Then,
+we will have someting like:
+
+\begin{equation}
+    \boxed{
+        C_C = \int^{\theta} A\epsilon_1\epsilon_2 W(\theta) \frac{\Delta
+        \Omega(\alpha_\theta, \beta)}{4\pi}
+    }
+\end{equation}
+
+\section{Experiment}
+For the scope of this experiment, we couldn't go very far,
+but we were able to `prove' coincidence using a coincidence
+heatmap. According to the theory that we have, within a
+short interval of time, the maximum coincidence should occur
+with the $5485.56$KeV $\alpha$ and the $59.5$KeV $\gamma$.
+So logically, we should get the coincidence heatmap with the
+peak at the intersection of these two energies, which we
+did, and presented ahead.
+
+\subsection{Hardware}
+For the preamplification, amplification, and detection of
+the alpha particle, we used the whole of PHYWE's Rutherford
+experiment setup, complete with a vacuum pump and monitor.
+Our only option here was to keep the sample at a
+$45^{\circ}$ angle, because the sample could only fire one
+way, and equal angles from both the detectors seemed the
+best choice to go with. Similarly for the gamma detection,
+we went with a normal NaI scintillation and SCA setup, only
+using the shaping and amplification module on the equipment. 
+
+For consolidating the two signals and as the MCA, we used
+CSpark's dual input MCA, which could do $500ns$ resolution
+for the coincidence. So if we had a coincidence measurement
+within $500ns$, both the outputs will be high in the log.
+All of our graphs have been sourced from this machine, with
+their code and some of our addition.
+
+\subsection{Spectra}
+\subsubsection{Alpha}
+We can clearly identify two peaks here, those two peaks have
+been used to callibrate the scale for all alpha channels
+here, and in the heatmap. We had some noise, and the
+amplification wasn't enough, which caused the coincidence
+counts to be a bit less than expected. a higher
+amplification would lift actual measurements off of the mud
+and make the coincidence a bit more evident.
+\begin{figure}[H]
+	\centering
+	\resizebox{0.8\columnwidth}{!}{%
+		\input{images/alpha.pgf}
+	}
+\end{figure}
+
+
+\subsubsection{Gamma}
+We can see a lot of peaks here, of which not all are due to
+the gamma spectrum of the sample itself. One of them is due
+to the silver that the sample is internally wrapped in.
+
+The values here mostly match what we expect, and the peaks
+here have been used to callibrate all the gamma related
+channels here and later on.
+\begin{figure}[H]
+	\centering
+	\resizebox{0.8\columnwidth}{!}{%
+		\input{images/gamma.pgf}
+	}
+\end{figure}
+\noindent All the plots here have been fitted with a
+gaussian, and they fit quite well, as we can see.
+
+\subsubsection{Correlation}
+We move on to the final item of presentation, the
+correlation heatmap. As mentioned before, this is the
+heatmap, where events register if they are in the $500ns$
+window. X axis goes for the alpha energy and Y axis for
+gamma. If this doesn't prove it enough, we will move to the
+gated coincidence graphs.
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=\columnwidth]{images/hmap.pdf}
+    \caption{Correlation heatmap}
+\end{figure}
+
+The graph below is a basic summation graph, where we are
+looking at one of the energies, and seeing how it fares with
+the other spectra's peak. We are looking at the peaks for
+gamma. The correlated peak is the one with higher counts
+than the uncorrelated peak, which was expected from the
+graph before.
+\begin{figure}[H]
+	\centering
+	\resizebox{0.8\columnwidth}{!}{%
+		\input{images/corr.pgf}
+	}
+    \caption{Gated correlation for both the gamma peaks}
+\end{figure}
+We can do the correlation delay measurements with a FPGA,
+but given that we do not have enough equipment for that, we
+couldn't attempt that part of the experiment. The
+correlation delay can be then used to find the background
+and be used to find out the actual correlation heatmap.
+
+Some other calculations can then be done to estimate the
+half life of the metastable state, which our primary
+reference did, and proved to a high accuracy that the
+experiment is possible.
+
+\section{Conclusion}
+We were able to setup and demonstrate alpha gamma
+coincidence for $^{241}$Am. The graphs came out to be as
+expected, and the experiment may be considered a success.
+
+\section{References}
+\begin{enumerate}
+    \item \fullcite{vret}
+    \item \fullcite{filipe}
+    \item \fullcite{fpga}
+    \item \fullcite{alterra}
+\end{enumerate}
+\end{multicols*}
+\clearpage
+\end{document}

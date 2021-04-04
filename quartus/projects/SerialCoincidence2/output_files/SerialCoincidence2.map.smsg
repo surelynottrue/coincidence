@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at SerialCoincidence2.v(129): always construct contains both blocking and non-blocking assignments File: /home/vishnu/fpga/SerialCoincidence2/SerialCoincidence2.v Line: 129

@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Wed Mar 10 18:30:10 2021
+Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+Revision Name : SerialCoincidence3
+Top-level Entity Name : SerialCoincidence3
+Family : Cyclone IV E
+Total logic elements : 32
+    Total combinational functions : 32
+    Dedicated logic registers : 22
+Total registers : 22
+Total pins : 6
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

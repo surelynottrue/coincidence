@@ -1,0 +1,166 @@
+#!/bin/bash
+
+QUARTUS_DIR=~/fpga
+TEMPLATE_DIR=~/.scripts/share/fpga/template
+TEMPLATE=DefaultTemplate
+BLASTER='USB-Blaster [1-2]'
+
+HEADER='\033[95m'
+BLUE='\033[94m'
+GREEN='\033[92m'
+ORANGE='\033[93m'
+RED='\033[91m'
+ENDC='\033[0m'
+BOLD='\033[1m'
+UNDERLINE='\033[4m'
+
+function cleanup(){
+		exit
+}
+
+function show_help(){
+		echo "$usage"
+}
+
+function die(){
+test -z "$@" || >&2 echo -e "$RED""$@""$ENDC"
+exit 1
+}
+
+trap cleanup EXIT
+
+test -d $QUARTUS_DIR || die "Please specify your your project directory in the script!"
+test -d $TEMPLATE_DIR || die "Template directory $TEMPLATE_DIR does not exist"
+test -d $TEMPLATE_DIR/$TEMPLATE || die "Tempalte directory $TEMPLATE_DIR/$TEMPLATE does not exist"
+test -f $QUARTUS_DIR/.quartus-cli || touch $QUARTUS_DIR/.quartus-cli
+test -d $QUARTUS_DIR/.trash || mkdir $QUARTUS_DIR/.trash
+
+usage="usage:
+ $(basename $0) [-h] [-n NAME] [-p [PROJECT]] [-c [PROJECT]]
+
+A simple wrapper script to create, manage, compile and program Quartus projects.
+
+options:
+ -n NAME	create new project
+ -l 		list available projects
+ -c [PROJECT]	compile and program PROJECT
+ -p [PROJECT]	program PROJECT onto hardware
+ -a [PROJECT]	edit pin assignments
+ -e [PROJECT]	edit main Verilog file
+ -d [PROJECT]	move PROJECT to trash
+ -o [PROJECT]	open PROJECT using Quartus GUI
+ "
+
+[[ "$1" == '-h' || "$1" == '--help' ]] && show_help && exit
+
+PREVIOUS_PROJECT=$(cat $QUARTUS_DIR/.quartus-cli)
+[[ -z "$2" && -n "$PREVIOUS_PROJECT" ]] && PROJECT=$PREVIOUS_PROJECT
+[[ -n "$2" && -z "$PROJECT" ]] && PROJECT="$2"
+echo "$PROJECT" > $QUARTUS_DIR/.quartus-cli
+
+while getopts ':nlpcedoa' opt; do
+		case $opt in
+				n)
+						DATE1=$(date +'%H:%M:%S %B %d, %Y') # qsf
+						DATE2=$(date +'%a %b %d %H:%M:%S %Y') # db_info
+						test -z $PROJECT && die "Specify project name"
+						test -d $QUARTUS_DIR/$PROJECT && die "Project already exists!"
+						cp -r "$TEMPLATE_DIR/$TEMPLATE" "$QUARTUS_DIR/$PROJECT"
+						rename $TEMPLATE $PROJECT $(find $QUARTUS_DIR/$PROJECT -name "$TEMPLATE.*")
+						sed -i "s/$TEMPLATE/$PROJECT/g" $(find $QUARTUS_DIR/$PROJECT -type f) 
+						sed -i "s/PlaceholderDate1/$DATE1/g" $(find $QUARTUS_DIR/$PROJECT -type f) 
+						sed -i "s/PlaceholderDate2/$DATE2/g" $(find $QUARTUS_DIR/$PROJECT -type f) 
+						exit
+						;;
+				l)
+						for DIR in $(ls -t $QUARTUS_DIR); do
+								[[ $DIR == $PROJECT ]] && echo -e "$BOLD""$GREEN"" $DIR""$ENDC" \[Recent\] && continue
+								echo " $DIR"
+						done
+						exit
+						;;
+				c)
+						pgrep jtagd >/dev/null || sudo jtagconfig
+
+						cd $QUARTUS_DIR/$PROJECT || die "Project doesn't exist!"
+						quartus_map --read_settings_files=on --write_settings_files=off $PROJECT -c $PROJECT || die
+						quartus_fit --read_settings_files=off --write_settings_files=off $PROJECT -c $PROJECT || die
+						quartus_asm --read_settings_files=off --write_settings_files=off $PROJECT -c $PROJECT || die
+						quartus_sta $PROJECT -c $PROJECT || die
+						quartus_eda --read_settings_files=off --write_settings_files=off $PROJECT -c $PROJECT || die
+
+						# sudo killall -9 jtagd
+						# sudo /opt/intelFPGA/20.1/quartus/bin/jtagconfig
+
+						cd output_files
+
+						# quartus_pgm -c 'USB-Blaster [1-1]' $PROJECT.cdf --mode='JTAG' 
+						quartus_pgm -c "$BLASTER" -o p\;$PROJECT.sof --mode='JTAG' 
+						exit
+						;;
+				a)
+						cd $QUARTUS_DIR/$PROJECT || die "Project Doesn't exist!"
+
+						PINS=$(sed -n "s/^\s*\(input\|\|output\|output reg\|output wire\) \(\S*\)\(,\|)\|;\).*/\2/p" *.v)
+						for pin in $PINS; do
+								grep -q "set_location_assignment \S* -to $pin" $PROJECT.qsf || echo set_location_assignment PIN -to $pin >> $QUARTUS_DIR/$PROJECT/$PROJECT.qsf
+						done
+
+
+						for i in $(sed -n "s/^\s*\(input\|\|output\|output reg\|output wire\) \[\(\S\+\):\(\S\+\)\] \(\S*\)\(,\|)\|;\).*/\2\f\3\f\4/p" *.v); do
+								buses=$(echo $i | tr '\f' '\t')
+								startb=$(echo $buses | cut -d ' ' -f1)
+								endb=$(echo $buses | cut -d ' ' -f2)
+								nameb=$(echo $buses | cut -d ' ' -f3)
+								[[ $startb < $endb ]] && continue
+								for (( num=$startb; num>=$endb; --num )); do
+										grep -q "set_location_assignment \S* -to $nameb\[$num\]" $PROJECT.qsf || echo set_location_assignment PIN -to $nameb\[$num\] >> $QUARTUS_DIR/$PROJECT/$PROJECT.qsf
+								done
+						done
+						test -z $EDITOR || $EDITOR $QUARTUS_DIR/$PROJECT/$PROJECT.qsf
+						exit
+						;;
+				e)
+						test -z $EDITOR || $EDITOR $QUARTUS_DIR/$PROJECT/$PROJECT.v
+						exit
+						;;
+				d)
+						DELETE=false
+						read -p "Move $PROJECT to trash? (y/N)" </dev/tty yn
+						case $yn in
+								[Yy]* ) DELETE=true;;
+								\? ) DELETE=false;;
+						esac
+						DATE=$(date +'%Y%m%d%H%M%S')
+						[[ $DELETE == true ]] && mv $QUARTUS_DIR/$PROJECT $QUARTUS_DIR/.trash/$DATE-$PROJECT && die "Moved $PROJECT to $QUARTUS_DIR/.trash/$DATE-$PROJECT"
+						exit
+						;;
+				o)
+						setsid -f quartus $QUARTUS_DIR/$PROJECT/$PROJECT.qpf
+						exit
+						;;
+				p)
+						pgrep jtagd >/dev/null || sudo jtagconfig
+						cd $QUARTUS_DIR/$PROJECT || die "Project doesn't exist!"
+						cd output_files || die "Compile the project first!"
+						quartus_pgm -c "$BLASTER" -o p\;$PROJECT.sof --mode='JTAG' 
+						exit
+						;;
+
+				\?)
+						die "Invalid argument"
+						;;
+
+
+		esac
+done
+
+show_help
+
+exit
+
+# TODO:
+# Handle multiple pin assignments in the same line
+# USB Connection check
+# Programming confirmation
+

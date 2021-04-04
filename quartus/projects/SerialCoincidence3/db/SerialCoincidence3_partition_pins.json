@@ -1,0 +1,25 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "TxD",
+					"strict" : false
+				},
+				{
+					"name" : "TxD_done",
+					"strict" : false
+				},
+				{
+					"name" : "TxD_start",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

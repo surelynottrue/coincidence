@@ -1,0 +1,1194 @@
+Timing Analyzer report for SerialCoincidence3
+Wed Mar 10 18:30:35 2021
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Parallel Compilation
+  4. Clocks
+  5. Slow 1200mV 85C Model Fmax Summary
+  6. Timing Closure Recommendations
+  7. Slow 1200mV 85C Model Setup Summary
+  8. Slow 1200mV 85C Model Hold Summary
+  9. Slow 1200mV 85C Model Recovery Summary
+ 10. Slow 1200mV 85C Model Removal Summary
+ 11. Slow 1200mV 85C Model Minimum Pulse Width Summary
+ 12. Slow 1200mV 85C Model Setup: 'clk'
+ 13. Slow 1200mV 85C Model Hold: 'clk'
+ 14. Slow 1200mV 85C Model Metastability Summary
+ 15. Slow 1200mV 0C Model Fmax Summary
+ 16. Slow 1200mV 0C Model Setup Summary
+ 17. Slow 1200mV 0C Model Hold Summary
+ 18. Slow 1200mV 0C Model Recovery Summary
+ 19. Slow 1200mV 0C Model Removal Summary
+ 20. Slow 1200mV 0C Model Minimum Pulse Width Summary
+ 21. Slow 1200mV 0C Model Setup: 'clk'
+ 22. Slow 1200mV 0C Model Hold: 'clk'
+ 23. Slow 1200mV 0C Model Metastability Summary
+ 24. Fast 1200mV 0C Model Setup Summary
+ 25. Fast 1200mV 0C Model Hold Summary
+ 26. Fast 1200mV 0C Model Recovery Summary
+ 27. Fast 1200mV 0C Model Removal Summary
+ 28. Fast 1200mV 0C Model Minimum Pulse Width Summary
+ 29. Fast 1200mV 0C Model Setup: 'clk'
+ 30. Fast 1200mV 0C Model Hold: 'clk'
+ 31. Fast 1200mV 0C Model Metastability Summary
+ 32. Multicorner Timing Analysis Summary
+ 33. Board Trace Model Assignments
+ 34. Input Transition Times
+ 35. Signal Integrity Metrics (Slow 1200mv 0c Model)
+ 36. Signal Integrity Metrics (Slow 1200mv 85c Model)
+ 37. Signal Integrity Metrics (Fast 1200mv 0c Model)
+ 38. Setup Transfers
+ 39. Hold Transfers
+ 40. Report TCCS
+ 41. Report RSKM
+ 42. Unconstrained Paths Summary
+ 43. Clock Status Summary
+ 44. Unconstrained Input Ports
+ 45. Unconstrained Output Ports
+ 46. Unconstrained Input Ports
+ 47. Unconstrained Output Ports
+ 48. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-----------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                     ;
++-----------------------+-----------------------------------------------------+
+; Quartus Prime Version ; Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Timing Analyzer       ; Legacy Timing Analyzer                              ;
+; Revision Name         ; SerialCoincidence3                                  ;
+; Device Family         ; Cyclone IV E                                        ;
+; Device Name           ; EP4CE115F29C7                                       ;
+; Timing Models         ; Final                                               ;
+; Delay Model           ; Combined                                            ;
+; Rise/Fall Delays      ; Enabled                                             ;
++-----------------------+-----------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.2%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                          ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+; clk        ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk } ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary                                                                        ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note                                                          ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; 382.26 MHz ; 250.0 MHz       ; clk        ; limit due to minimum period restriction (max I/O toggle rate) ;
++------------+-----------------+------------+---------------------------------------------------------------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
+----------------------------------
+; Timing Closure Recommendations ;
+----------------------------------
+HTML report is unavailable in plain text report export.
+
+
++-------------------------------------+
+; Slow 1200mV 85C Model Setup Summary ;
++-------+--------+--------------------+
+; Clock ; Slack  ; End Point TNS      ;
++-------+--------+--------------------+
+; clk   ; -1.616 ; -27.813            ;
++-------+--------+--------------------+
+
+
++------------------------------------+
+; Slow 1200mV 85C Model Hold Summary ;
++-------+-------+--------------------+
+; Clock ; Slack ; End Point TNS      ;
++-------+-------+--------------------+
+; clk   ; 0.385 ; 0.000              ;
++-------+-------+--------------------+
+
+
+------------------------------------------
+; Slow 1200mV 85C Model Recovery Summary ;
+------------------------------------------
+No paths to report.
+
+
+-----------------------------------------
+; Slow 1200mV 85C Model Removal Summary ;
+-----------------------------------------
+No paths to report.
+
+
++---------------------------------------------------+
+; Slow 1200mV 85C Model Minimum Pulse Width Summary ;
++-------+--------+----------------------------------+
+; Clock ; Slack  ; End Point TNS                    ;
++-------+--------+----------------------------------+
+; clk   ; -3.000 ; -31.270                          ;
++-------+--------+----------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Setup: 'clk'                                                                                                       ;
++--------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                   ; To Node                     ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; -1.616 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.528      ;
+; -1.616 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.528      ;
+; -1.616 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.528      ;
+; -1.579 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.491      ;
+; -1.579 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.491      ;
+; -1.579 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.491      ;
+; -1.521 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.427      ;
+; -1.498 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.404      ;
+; -1.475 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.381      ;
+; -1.432 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.344      ;
+; -1.432 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.344      ;
+; -1.432 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.344      ;
+; -1.396 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.302      ;
+; -1.389 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.295      ;
+; -1.368 ; TxD_state[1]                ; TxD_state[2]                ; clk          ; clk         ; 1.000        ; -0.081     ; 2.285      ;
+; -1.366 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.272      ;
+; -1.366 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.272      ;
+; -1.350 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.256      ;
+; -1.342 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.248      ;
+; -1.341 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.649      ;
+; -1.331 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.237      ;
+; -1.316 ; TxD_state[1]                ; TxD_state[3]                ; clk          ; clk         ; 1.000        ; -0.081     ; 2.233      ;
+; -1.278 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.190      ;
+; -1.278 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.190      ;
+; -1.278 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.086     ; 2.190      ;
+; -1.264 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.170      ;
+; -1.264 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.170      ;
+; -1.256 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.162      ;
+; -1.251 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.559      ;
+; -1.239 ; TxD_state[0]                ; TxD_state[2]                ; clk          ; clk         ; 1.000        ; -0.081     ; 2.156      ;
+; -1.234 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.140      ;
+; -1.234 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.140      ;
+; -1.233 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.139      ;
+; -1.231 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.528      ;
+; -1.231 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.528      ;
+; -1.231 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.528      ;
+; -1.231 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.528      ;
+; -1.231 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.528      ;
+; -1.228 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.536      ;
+; -1.218 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.096     ; 2.120      ;
+; -1.218 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.124      ;
+; -1.217 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.123      ;
+; -1.216 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.524      ;
+; -1.206 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.514      ;
+; -1.199 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.105      ;
+; -1.198 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.104      ;
+; -1.197 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.505      ;
+; -1.194 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.491      ;
+; -1.194 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.491      ;
+; -1.194 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.491      ;
+; -1.194 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.491      ;
+; -1.194 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.491      ;
+; -1.193 ; TxD_state[0]                ; TxD_state[3]                ; clk          ; clk         ; 1.000        ; -0.081     ; 2.110      ;
+; -1.171 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[3]                ; clk          ; clk         ; 1.000        ; -0.481     ; 1.688      ;
+; -1.132 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.038      ;
+; -1.132 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.038      ;
+; -1.131 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.037      ;
+; -1.129 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[2]                ; clk          ; clk         ; 1.000        ; -0.481     ; 1.646      ;
+; -1.127 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.096     ; 2.029      ;
+; -1.126 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.434      ;
+; -1.105 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.096     ; 2.007      ;
+; -1.102 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.008      ;
+; -1.102 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.008      ;
+; -1.101 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.092     ; 2.007      ;
+; -1.096 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.482     ; 1.612      ;
+; -1.096 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.404      ;
+; -1.093 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.096     ; 1.995      ;
+; -1.086 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; -0.092     ; 1.992      ;
+; -1.085 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.092     ; 1.991      ;
+; -1.084 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.096     ; 1.986      ;
+; -1.084 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.392      ;
+; -1.081 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.389      ;
+; -1.074 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.096     ; 1.976      ;
+; -1.067 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; -0.092     ; 1.973      ;
+; -1.066 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.092     ; 1.972      ;
+; -1.065 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.373      ;
+; -1.062 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.370      ;
+; -1.047 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.344      ;
+; -1.047 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.344      ;
+; -1.047 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.344      ;
+; -1.047 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.344      ;
+; -1.047 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 1.000        ; 0.299      ; 2.344      ;
+; -1.002 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.096     ; 1.904      ;
+; -1.000 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 1.000        ; -0.092     ; 1.906      ;
+; -1.000 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; -0.092     ; 1.906      ;
+; -0.999 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.092     ; 1.905      ;
+; -0.996 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.096     ; 1.898      ;
+; -0.994 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.302      ;
+; -0.975 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; -0.097     ; 1.876      ;
+; -0.974 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.096     ; 1.876      ;
+; -0.973 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.096     ; 1.875      ;
+; -0.970 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 1.000        ; -0.092     ; 1.876      ;
+; -0.969 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; -0.092     ; 1.875      ;
+; -0.964 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; 0.310      ; 2.272      ;
+; -0.961 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.096     ; 1.863      ;
+; -0.959 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.096     ; 1.861      ;
+; -0.956 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.304      ; 2.258      ;
+; -0.956 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.304      ; 2.258      ;
+; -0.956 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.304      ; 2.258      ;
+; -0.956 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; 0.304      ; 2.258      ;
++--------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Hold: 'clk'                                                                                                       ;
++-------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                   ; To Node                     ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; 0.385 ; TxD_done~reg0               ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.098      ; 0.669      ;
+; 0.402 ; TxD_state[3]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.081      ; 0.669      ;
+; 0.402 ; TxD_state[2]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.081      ; 0.669      ;
+; 0.402 ; TxD_state[1]                ; TxD_state[1]                ; clk          ; clk         ; 0.000        ; 0.081      ; 0.669      ;
+; 0.402 ; TxD_state[0]                ; TxD_state[0]                ; clk          ; clk         ; 0.000        ; 0.081      ; 0.669      ;
+; 0.550 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.218      ;
+; 0.552 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.220      ;
+; 0.570 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.238      ;
+; 0.615 ; TxD_state[3]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.515      ; 1.316      ;
+; 0.617 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.097      ; 0.900      ;
+; 0.618 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.097      ; 0.901      ;
+; 0.619 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.096      ; 0.901      ;
+; 0.619 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.096      ; 0.901      ;
+; 0.619 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.097      ; 0.902      ;
+; 0.620 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.096      ; 0.902      ;
+; 0.620 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 0.000        ; 0.097      ; 0.903      ;
+; 0.621 ; BaudTickGen:tickgen|Acc[15] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.096      ; 0.903      ;
+; 0.622 ; BaudTickGen:tickgen|Acc[16] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.096      ; 0.904      ;
+; 0.622 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.096      ; 0.904      ;
+; 0.622 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.097      ; 0.905      ;
+; 0.623 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.096      ; 0.905      ;
+; 0.624 ; BaudTickGen:tickgen|Acc[13] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.096      ; 0.906      ;
+; 0.627 ; TxD_state[2]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.515      ; 1.328      ;
+; 0.634 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 0.000        ; 0.080      ; 0.900      ;
+; 0.640 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 0.000        ; 0.080      ; 0.906      ;
+; 0.663 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 0.000        ; 0.080      ; 0.929      ;
+; 0.671 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.339      ;
+; 0.676 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.344      ;
+; 0.678 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.346      ;
+; 0.696 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.364      ;
+; 0.699 ; TxD_state[3]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.081      ; 0.966      ;
+; 0.719 ; TxD_state[2]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.081      ; 0.986      ;
+; 0.720 ; TxD_state[1]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.515      ; 1.421      ;
+; 0.739 ; TxD_state[0]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.515      ; 1.440      ;
+; 0.797 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.465      ;
+; 0.798 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.486      ; 1.470      ;
+; 0.799 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.467      ;
+; 0.804 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.472      ;
+; 0.817 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.485      ;
+; 0.822 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.490      ;
+; 0.919 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.486      ; 1.591      ;
+; 0.924 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.486      ; 1.596      ;
+; 0.925 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.593      ;
+; 0.926 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.486      ; 1.598      ;
+; 0.930 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.101      ; 1.217      ;
+; 0.935 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.097      ; 1.218      ;
+; 0.936 ; TxD_state[1]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.081      ; 1.203      ;
+; 0.936 ; TxD_state[1]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.081      ; 1.203      ;
+; 0.937 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.219      ;
+; 0.937 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.219      ;
+; 0.937 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.219      ;
+; 0.939 ; BaudTickGen:tickgen|Acc[16] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.221      ;
+; 0.943 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.482      ; 1.611      ;
+; 0.944 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.486      ; 1.616      ;
+; 0.948 ; BaudTickGen:tickgen|Acc[15] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.230      ;
+; 0.949 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.097      ; 1.232      ;
+; 0.949 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.097      ; 1.232      ;
+; 0.949 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.231      ;
+; 0.950 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.232      ;
+; 0.950 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.101      ; 1.237      ;
+; 0.951 ; BaudTickGen:tickgen|Acc[13] ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.233      ;
+; 0.953 ; BaudTickGen:tickgen|Acc[15] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.235      ;
+; 0.954 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.097      ; 1.237      ;
+; 0.954 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.236      ;
+; 0.955 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.097      ; 1.238      ;
+; 0.955 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.237      ;
+; 0.956 ; BaudTickGen:tickgen|Acc[13] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.238      ;
+; 0.967 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 0.000        ; 0.080      ; 1.233      ;
+; 1.002 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[1]                ; clk          ; clk         ; 0.000        ; -0.304     ; 0.884      ;
+; 1.002 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[0]                ; clk          ; clk         ; 0.000        ; -0.304     ; 0.884      ;
+; 1.014 ; TxD_state[0]                ; TxD_state[1]                ; clk          ; clk         ; 0.000        ; 0.081      ; 1.281      ;
+; 1.024 ; TxD_state[0]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.081      ; 1.291      ;
+; 1.024 ; TxD_state[0]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.081      ; 1.291      ;
+; 1.045 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.486      ; 1.717      ;
+; 1.047 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.486      ; 1.719      ;
+; 1.050 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.486      ; 1.722      ;
+; 1.051 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.101      ; 1.338      ;
+; 1.052 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.486      ; 1.724      ;
+; 1.056 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.097      ; 1.339      ;
+; 1.056 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.101      ; 1.343      ;
+; 1.057 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.101      ; 1.344      ;
+; 1.058 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.340      ;
+; 1.058 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.340      ;
+; 1.058 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.340      ;
+; 1.059 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.481      ; 1.726      ;
+; 1.059 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.481      ; 1.726      ;
+; 1.059 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.481      ; 1.726      ;
+; 1.059 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.481      ; 1.726      ;
+; 1.059 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.481      ; 1.726      ;
+; 1.059 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.481      ; 1.726      ;
+; 1.059 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.481      ; 1.726      ;
+; 1.059 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.481      ; 1.726      ;
+; 1.059 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.481      ; 1.726      ;
+; 1.063 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.345      ;
+; 1.063 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.345      ;
+; 1.063 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.096      ; 1.345      ;
+; 1.065 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.486      ; 1.737      ;
+; 1.070 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.486      ; 1.742      ;
+; 1.071 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.101      ; 1.358      ;
+; 1.075 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 0.000        ; 0.080      ; 1.341      ;
++-------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+
+
+-----------------------------------------------
+; Slow 1200mV 85C Model Metastability Summary ;
+-----------------------------------------------
+No synchronizer chains to report.
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary                                                                         ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note                                                          ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; 418.24 MHz ; 250.0 MHz       ; clk        ; limit due to minimum period restriction (max I/O toggle rate) ;
++------------+-----------------+------------+---------------------------------------------------------------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++------------------------------------+
+; Slow 1200mV 0C Model Setup Summary ;
++-------+--------+-------------------+
+; Clock ; Slack  ; End Point TNS     ;
++-------+--------+-------------------+
+; clk   ; -1.391 ; -23.020           ;
++-------+--------+-------------------+
+
+
++-----------------------------------+
+; Slow 1200mV 0C Model Hold Summary ;
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; clk   ; 0.338 ; 0.000             ;
++-------+-------+-------------------+
+
+
+-----------------------------------------
+; Slow 1200mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
+
+
+----------------------------------------
+; Slow 1200mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
+
+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Minimum Pulse Width Summary ;
++-------+--------+---------------------------------+
+; Clock ; Slack  ; End Point TNS                   ;
++-------+--------+---------------------------------+
+; clk   ; -3.000 ; -31.270                         ;
++-------+--------+---------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Setup: 'clk'                                                                                                        ;
++--------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                   ; To Node                     ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; -1.391 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.314      ;
+; -1.391 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.314      ;
+; -1.391 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.314      ;
+; -1.353 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.276      ;
+; -1.353 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.276      ;
+; -1.353 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.276      ;
+; -1.240 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.083     ; 2.156      ;
+; -1.237 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.083     ; 2.153      ;
+; -1.228 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.151      ;
+; -1.228 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.151      ;
+; -1.228 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.151      ;
+; -1.198 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.083     ; 2.114      ;
+; -1.146 ; TxD_state[1]                ; TxD_state[2]                ; clk          ; clk         ; 1.000        ; -0.072     ; 2.073      ;
+; -1.139 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.083     ; 2.055      ;
+; -1.123 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.083     ; 2.039      ;
+; -1.121 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.083     ; 2.037      ;
+; -1.121 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.083     ; 2.037      ;
+; -1.115 ; TxD_state[1]                ; TxD_state[3]                ; clk          ; clk         ; 1.000        ; -0.072     ; 2.042      ;
+; -1.097 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.083     ; 2.013      ;
+; -1.088 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.011      ;
+; -1.088 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.011      ;
+; -1.088 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.076     ; 2.011      ;
+; -1.081 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.997      ;
+; -1.068 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.351      ;
+; -1.068 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.984      ;
+; -1.039 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.314      ;
+; -1.039 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.314      ;
+; -1.039 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.314      ;
+; -1.039 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.314      ;
+; -1.039 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.314      ;
+; -1.033 ; TxD_state[0]                ; TxD_state[2]                ; clk          ; clk         ; 1.000        ; -0.072     ; 1.960      ;
+; -1.023 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.939      ;
+; -1.022 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.938      ;
+; -1.006 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.922      ;
+; -1.005 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.921      ;
+; -1.005 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.921      ;
+; -1.004 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.920      ;
+; -1.002 ; TxD_state[0]                ; TxD_state[3]                ; clk          ; clk         ; 1.000        ; -0.072     ; 1.929      ;
+; -1.001 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.276      ;
+; -1.001 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.276      ;
+; -1.001 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.276      ;
+; -1.001 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.276      ;
+; -1.001 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.276      ;
+; -0.989 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.272      ;
+; -0.986 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.269      ;
+; -0.981 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.897      ;
+; -0.980 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.896      ;
+; -0.974 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.087     ; 1.886      ;
+; -0.967 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.250      ;
+; -0.952 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.868      ;
+; -0.951 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.867      ;
+; -0.948 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.231      ;
+; -0.946 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[3]                ; clk          ; clk         ; 1.000        ; -0.438     ; 1.507      ;
+; -0.938 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.221      ;
+; -0.930 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[2]                ; clk          ; clk         ; 1.000        ; -0.438     ; 1.491      ;
+; -0.907 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.823      ;
+; -0.906 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.822      ;
+; -0.905 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.821      ;
+; -0.896 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.438     ; 1.457      ;
+; -0.894 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.087     ; 1.806      ;
+; -0.892 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.087     ; 1.804      ;
+; -0.889 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.805      ;
+; -0.889 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.805      ;
+; -0.888 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.804      ;
+; -0.888 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.171      ;
+; -0.876 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.151      ;
+; -0.876 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.151      ;
+; -0.876 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.151      ;
+; -0.876 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.151      ;
+; -0.876 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 1.000        ; 0.276      ; 2.151      ;
+; -0.873 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.087     ; 1.785      ;
+; -0.870 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.153      ;
+; -0.865 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.781      ;
+; -0.864 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.780      ;
+; -0.855 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.087     ; 1.767      ;
+; -0.851 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.134      ;
+; -0.847 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.130      ;
+; -0.844 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.087     ; 1.756      ;
+; -0.836 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.752      ;
+; -0.835 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.751      ;
+; -0.822 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.105      ;
+; -0.818 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.284      ; 2.101      ;
+; -0.793 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.087     ; 1.705      ;
+; -0.791 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 1.000        ; -0.083     ; 1.707      ;
+; -0.790 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.706      ;
+; -0.789 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.705      ;
+; -0.785 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.279      ; 2.063      ;
+; -0.785 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.279      ; 2.063      ;
+; -0.785 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.279      ; 2.063      ;
+; -0.785 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; 0.279      ; 2.063      ;
+; -0.785 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; 0.279      ; 2.063      ;
+; -0.785 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; 0.279      ; 2.063      ;
+; -0.785 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; 0.279      ; 2.063      ;
+; -0.785 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 1.000        ; 0.279      ; 2.063      ;
+; -0.785 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 1.000        ; 0.279      ; 2.063      ;
+; -0.779 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.087     ; 1.691      ;
+; -0.777 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.087     ; 1.689      ;
+; -0.776 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; -0.086     ; 1.689      ;
+; -0.776 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.087     ; 1.688      ;
+; -0.773 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 1.000        ; -0.083     ; 1.689      ;
++--------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Hold: 'clk'                                                                                                        ;
++-------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                   ; To Node                     ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; 0.338 ; TxD_done~reg0               ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.088      ; 0.597      ;
+; 0.354 ; TxD_state[3]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.072      ; 0.597      ;
+; 0.354 ; TxD_state[2]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.072      ; 0.597      ;
+; 0.354 ; TxD_state[1]                ; TxD_state[1]                ; clk          ; clk         ; 0.000        ; 0.072      ; 0.597      ;
+; 0.354 ; TxD_state[0]                ; TxD_state[0]                ; clk          ; clk         ; 0.000        ; 0.072      ; 0.597      ;
+; 0.499 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.108      ;
+; 0.504 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.113      ;
+; 0.518 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.127      ;
+; 0.565 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.087      ; 0.823      ;
+; 0.565 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.087      ; 0.823      ;
+; 0.565 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.086      ; 0.822      ;
+; 0.565 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.086      ; 0.822      ;
+; 0.566 ; BaudTickGen:tickgen|Acc[15] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.087      ; 0.824      ;
+; 0.567 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.087      ; 0.825      ;
+; 0.568 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.086      ; 0.825      ;
+; 0.569 ; BaudTickGen:tickgen|Acc[16] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.087      ; 0.827      ;
+; 0.569 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.087      ; 0.827      ;
+; 0.569 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.087      ; 0.827      ;
+; 0.569 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 0.000        ; 0.086      ; 0.826      ;
+; 0.570 ; BaudTickGen:tickgen|Acc[13] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.087      ; 0.828      ;
+; 0.570 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.086      ; 0.827      ;
+; 0.572 ; TxD_state[3]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.472      ; 1.215      ;
+; 0.577 ; TxD_state[2]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.472      ; 1.220      ;
+; 0.580 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 0.000        ; 0.071      ; 0.822      ;
+; 0.586 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 0.000        ; 0.071      ; 0.828      ;
+; 0.598 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.207      ;
+; 0.607 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 0.000        ; 0.071      ; 0.849      ;
+; 0.609 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.218      ;
+; 0.614 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.223      ;
+; 0.628 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.237      ;
+; 0.647 ; TxD_state[3]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.072      ; 0.890      ;
+; 0.656 ; TxD_state[1]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.472      ; 1.299      ;
+; 0.656 ; TxD_state[2]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.072      ; 0.899      ;
+; 0.671 ; TxD_state[0]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.472      ; 1.314      ;
+; 0.708 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.317      ;
+; 0.713 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.322      ;
+; 0.715 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.442      ; 1.328      ;
+; 0.724 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.333      ;
+; 0.727 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.336      ;
+; 0.738 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.347      ;
+; 0.814 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.442      ; 1.427      ;
+; 0.823 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.432      ;
+; 0.825 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.442      ; 1.438      ;
+; 0.830 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.442      ; 1.443      ;
+; 0.837 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.446      ;
+; 0.844 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.442      ; 1.457      ;
+; 0.846 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.090      ; 1.107      ;
+; 0.851 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.109      ;
+; 0.851 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.109      ;
+; 0.851 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.086      ; 1.108      ;
+; 0.853 ; TxD_state[1]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.072      ; 1.096      ;
+; 0.853 ; TxD_state[1]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.072      ; 1.096      ;
+; 0.854 ; BaudTickGen:tickgen|Acc[15] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.112      ;
+; 0.854 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.112      ;
+; 0.856 ; BaudTickGen:tickgen|Acc[16] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.114      ;
+; 0.857 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.115      ;
+; 0.857 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.115      ;
+; 0.858 ; BaudTickGen:tickgen|Acc[13] ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.116      ;
+; 0.858 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.086      ; 1.115      ;
+; 0.858 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.086      ; 1.115      ;
+; 0.865 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.090      ; 1.126      ;
+; 0.865 ; BaudTickGen:tickgen|Acc[15] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.123      ;
+; 0.868 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.126      ;
+; 0.868 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.126      ;
+; 0.869 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.086      ; 1.126      ;
+; 0.869 ; BaudTickGen:tickgen|Acc[13] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.127      ;
+; 0.870 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.086      ; 1.127      ;
+; 0.874 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 0.000        ; 0.071      ; 1.116      ;
+; 0.924 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[1]                ; clk          ; clk         ; 0.000        ; -0.279     ; 0.816      ;
+; 0.924 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[0]                ; clk          ; clk         ; 0.000        ; -0.279     ; 0.816      ;
+; 0.924 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.442      ; 1.537      ;
+; 0.929 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.442      ; 1.542      ;
+; 0.932 ; TxD_state[0]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.072      ; 1.175      ;
+; 0.932 ; TxD_state[0]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.072      ; 1.175      ;
+; 0.933 ; TxD_state[0]                ; TxD_state[1]                ; clk          ; clk         ; 0.000        ; 0.072      ; 1.176      ;
+; 0.935 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.442      ; 1.548      ;
+; 0.940 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.442      ; 1.553      ;
+; 0.943 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.442      ; 1.556      ;
+; 0.945 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.090      ; 1.206      ;
+; 0.950 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.086      ; 1.207      ;
+; 0.950 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.208      ;
+; 0.950 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.208      ;
+; 0.953 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.438      ; 1.562      ;
+; 0.953 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.438      ; 1.562      ;
+; 0.953 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.438      ; 1.562      ;
+; 0.953 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.438      ; 1.562      ;
+; 0.953 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.438      ; 1.562      ;
+; 0.953 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.438      ; 1.562      ;
+; 0.953 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.438      ; 1.562      ;
+; 0.953 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.438      ; 1.562      ;
+; 0.953 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.438      ; 1.562      ;
+; 0.953 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.211      ;
+; 0.954 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.442      ; 1.567      ;
+; 0.956 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.090      ; 1.217      ;
+; 0.957 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.090      ; 1.218      ;
+; 0.961 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.219      ;
+; 0.961 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.219      ;
+; 0.964 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.090      ; 1.225      ;
+; 0.964 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.222      ;
+; 0.967 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.087      ; 1.225      ;
++-------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+
+
+----------------------------------------------
+; Slow 1200mV 0C Model Metastability Summary ;
+----------------------------------------------
+No synchronizer chains to report.
+
+
++------------------------------------+
+; Fast 1200mV 0C Model Setup Summary ;
++-------+--------+-------------------+
+; Clock ; Slack  ; End Point TNS     ;
++-------+--------+-------------------+
+; clk   ; -0.244 ; -2.289            ;
++-------+--------+-------------------+
+
+
++-----------------------------------+
+; Fast 1200mV 0C Model Hold Summary ;
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; clk   ; 0.174 ; 0.000             ;
++-------+-------+-------------------+
+
+
+-----------------------------------------
+; Fast 1200mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
+
+
+----------------------------------------
+; Fast 1200mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
+
+
++--------------------------------------------------+
+; Fast 1200mV 0C Model Minimum Pulse Width Summary ;
++-------+--------+---------------------------------+
+; Clock ; Slack  ; End Point TNS                   ;
++-------+--------+---------------------------------+
+; clk   ; -3.000 ; -26.618                         ;
++-------+--------+---------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Setup: 'clk'                                                                                                        ;
++--------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                   ; To Node                     ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; -0.244 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.185      ;
+; -0.244 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.185      ;
+; -0.244 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.185      ;
+; -0.240 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.183      ;
+; -0.223 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.164      ;
+; -0.223 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.164      ;
+; -0.223 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.164      ;
+; -0.217 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.160      ;
+; -0.211 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.154      ;
+; -0.173 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.116      ;
+; -0.172 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.115      ;
+; -0.167 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.300      ;
+; -0.153 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.096      ;
+; -0.149 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.092      ;
+; -0.148 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.091      ;
+; -0.147 ; TxD_state[1]                ; TxD_state[2]                ; clk          ; clk         ; 1.000        ; -0.041     ; 1.093      ;
+; -0.144 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.085      ;
+; -0.144 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.085      ;
+; -0.144 ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.085      ;
+; -0.143 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.086      ;
+; -0.143 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.086      ;
+; -0.119 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.252      ;
+; -0.112 ; TxD_state[1]                ; TxD_state[3]                ; clk          ; clk         ; 1.000        ; -0.041     ; 1.058      ;
+; -0.105 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.048      ;
+; -0.104 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.047      ;
+; -0.104 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.047      ;
+; -0.103 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.236      ;
+; -0.099 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.232      ;
+; -0.094 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.227      ;
+; -0.089 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.048     ; 1.028      ;
+; -0.089 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.222      ;
+; -0.087 ; TxD_state[0]                ; TxD_state[2]                ; clk          ; clk         ; 1.000        ; -0.041     ; 1.033      ;
+; -0.085 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.028      ;
+; -0.084 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.027      ;
+; -0.081 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.024      ;
+; -0.080 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.023      ;
+; -0.075 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.018      ;
+; -0.075 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.018      ;
+; -0.074 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.017      ;
+; -0.073 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.014      ;
+; -0.073 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.014      ;
+; -0.073 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 1.000        ; -0.046     ; 1.014      ;
+; -0.062 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.185      ;
+; -0.062 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.185      ;
+; -0.062 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.185      ;
+; -0.062 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.185      ;
+; -0.062 ; TxD_state[3]                ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.185      ;
+; -0.061 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[3]                ; clk          ; clk         ; 1.000        ; -0.230     ; 0.818      ;
+; -0.052 ; TxD_state[0]                ; TxD_state[3]                ; clk          ; clk         ; 1.000        ; -0.041     ; 0.998      ;
+; -0.051 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.184      ;
+; -0.041 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.164      ;
+; -0.041 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.164      ;
+; -0.041 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.164      ;
+; -0.041 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.164      ;
+; -0.041 ; TxD_state[1]                ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.164      ;
+; -0.040 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.979      ;
+; -0.037 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.980      ;
+; -0.036 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.979      ;
+; -0.036 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.979      ;
+; -0.035 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.168      ;
+; -0.031 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.164      ;
+; -0.030 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.163      ;
+; -0.026 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.159      ;
+; -0.025 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.964      ;
+; -0.021 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.960      ;
+; -0.021 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.154      ;
+; -0.018 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.957      ;
+; -0.017 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.960      ;
+; -0.016 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.959      ;
+; -0.015 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[2]                ; clk          ; clk         ; 1.000        ; -0.230     ; 0.772      ;
+; -0.013 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.956      ;
+; -0.012 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.955      ;
+; -0.010 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.949      ;
+; -0.007 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.950      ;
+; -0.007 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.950      ;
+; -0.006 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.949      ;
+; 0.010  ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 1.000        ; -0.231     ; 0.746      ;
+; 0.017  ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.116      ;
+; 0.027  ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.912      ;
+; 0.028  ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.911      ;
+; 0.031  ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.912      ;
+; 0.032  ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 1.000        ; -0.044     ; 0.911      ;
+; 0.032  ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.911      ;
+; 0.033  ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.100      ;
+; 0.037  ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.096      ;
+; 0.038  ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.095      ;
+; 0.038  ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.085      ;
+; 0.038  ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.085      ;
+; 0.038  ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.085      ;
+; 0.038  ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.085      ;
+; 0.038  ; TxD_state[2]                ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 1.000        ; 0.136      ; 1.085      ;
+; 0.042  ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.091      ;
+; 0.043  ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.896      ;
+; 0.046  ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.893      ;
+; 0.047  ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.892      ;
+; 0.047  ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 1.000        ; 0.146      ; 1.086      ;
+; 0.048  ; TxD_state[3]                ; TxD_state[0]                ; clk          ; clk         ; 1.000        ; -0.041     ; 0.898      ;
+; 0.050  ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.889      ;
+; 0.050  ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 1.000        ; -0.048     ; 0.889      ;
+; 0.051  ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 1.000        ; -0.044     ; 0.892      ;
++--------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Hold: 'clk'                                                                                                        ;
++-------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                   ; To Node                     ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+; 0.174 ; TxD_done~reg0               ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.049      ; 0.307      ;
+; 0.182 ; TxD_state[3]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.307      ;
+; 0.182 ; TxD_state[2]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.307      ;
+; 0.182 ; TxD_state[1]                ; TxD_state[1]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.307      ;
+; 0.182 ; TxD_state[0]                ; TxD_state[0]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.307      ;
+; 0.248 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.563      ;
+; 0.249 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.564      ;
+; 0.261 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.576      ;
+; 0.278 ; TxD_state[3]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.245      ; 0.607      ;
+; 0.280 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.413      ;
+; 0.280 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.413      ;
+; 0.281 ; TxD_state[2]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.245      ; 0.610      ;
+; 0.282 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.414      ;
+; 0.282 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.414      ;
+; 0.282 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.414      ;
+; 0.282 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.415      ;
+; 0.282 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.415      ;
+; 0.282 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[3]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.415      ;
+; 0.283 ; BaudTickGen:tickgen|Acc[16] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.415      ;
+; 0.283 ; BaudTickGen:tickgen|Acc[15] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.415      ;
+; 0.283 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.048      ; 0.415      ;
+; 0.284 ; BaudTickGen:tickgen|Acc[13] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.416      ;
+; 0.284 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.416      ;
+; 0.289 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 0.000        ; 0.041      ; 0.414      ;
+; 0.291 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 0.000        ; 0.041      ; 0.416      ;
+; 0.301 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[1]  ; clk          ; clk         ; 0.000        ; 0.041      ; 0.426      ;
+; 0.311 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.626      ;
+; 0.314 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.629      ;
+; 0.315 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.630      ;
+; 0.323 ; TxD_state[1]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.245      ; 0.652      ;
+; 0.325 ; TxD_state[3]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.450      ;
+; 0.327 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.642      ;
+; 0.334 ; TxD_state[2]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.459      ;
+; 0.335 ; TxD_state[0]                ; TxD_done~reg0               ; clk          ; clk         ; 0.000        ; 0.245      ; 0.664      ;
+; 0.376 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.235      ; 0.695      ;
+; 0.377 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.692      ;
+; 0.378 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.693      ;
+; 0.381 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.696      ;
+; 0.390 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.705      ;
+; 0.393 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.708      ;
+; 0.424 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.053      ; 0.561      ;
+; 0.426 ; TxD_state[1]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.551      ;
+; 0.429 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.562      ;
+; 0.430 ; TxD_state[1]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.555      ;
+; 0.431 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.563      ;
+; 0.431 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.563      ;
+; 0.431 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.563      ;
+; 0.432 ; BaudTickGen:tickgen|Acc[16] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.564      ;
+; 0.439 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.235      ; 0.758      ;
+; 0.439 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.053      ; 0.576      ;
+; 0.440 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.573      ;
+; 0.441 ; BaudTickGen:tickgen|Acc[15] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.573      ;
+; 0.441 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.574      ;
+; 0.441 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.573      ;
+; 0.442 ; BaudTickGen:tickgen|Acc[13] ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.574      ;
+; 0.442 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.574      ;
+; 0.442 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.235      ; 0.761      ;
+; 0.443 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.235      ; 0.762      ;
+; 0.444 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[7]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.577      ;
+; 0.444 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[5]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.577      ;
+; 0.444 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.759      ;
+; 0.444 ; BaudTickGen:tickgen|Acc[15] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.576      ;
+; 0.444 ; BaudTickGen:tickgen|Acc[9]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.576      ;
+; 0.445 ; BaudTickGen:tickgen|Acc[13] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.577      ;
+; 0.445 ; BaudTickGen:tickgen|Acc[11] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.577      ;
+; 0.448 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[2]  ; clk          ; clk         ; 0.000        ; 0.041      ; 0.573      ;
+; 0.455 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.235      ; 0.774      ;
+; 0.456 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[1]                ; clk          ; clk         ; 0.000        ; -0.141     ; 0.399      ;
+; 0.456 ; BaudTickGen:tickgen|Acc[17] ; TxD_state[0]                ; clk          ; clk         ; 0.000        ; -0.141     ; 0.399      ;
+; 0.456 ; BaudTickGen:tickgen|Acc[1]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.231      ; 0.771      ;
+; 0.460 ; TxD_state[0]                ; TxD_state[1]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.585      ;
+; 0.469 ; TxD_state[0]                ; TxD_state[2]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.594      ;
+; 0.473 ; TxD_state[0]                ; TxD_state[3]                ; clk          ; clk         ; 0.000        ; 0.041      ; 0.598      ;
+; 0.487 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.053      ; 0.624      ;
+; 0.490 ; BaudTickGen:tickgen|Acc[8]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.053      ; 0.627      ;
+; 0.491 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.053      ; 0.628      ;
+; 0.492 ; BaudTickGen:tickgen|Acc[6]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.625      ;
+; 0.494 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.626      ;
+; 0.494 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.626      ;
+; 0.494 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.626      ;
+; 0.497 ; BaudTickGen:tickgen|Acc[14] ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.629      ;
+; 0.497 ; BaudTickGen:tickgen|Acc[12] ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.629      ;
+; 0.497 ; BaudTickGen:tickgen|Acc[10] ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.048      ; 0.629      ;
+; 0.501 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[17] ; clk          ; clk         ; 0.000        ; 0.230      ; 0.815      ;
+; 0.501 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[16] ; clk          ; clk         ; 0.000        ; 0.230      ; 0.815      ;
+; 0.501 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[15] ; clk          ; clk         ; 0.000        ; 0.230      ; 0.815      ;
+; 0.501 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[14] ; clk          ; clk         ; 0.000        ; 0.230      ; 0.815      ;
+; 0.501 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[13] ; clk          ; clk         ; 0.000        ; 0.230      ; 0.815      ;
+; 0.501 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.230      ; 0.815      ;
+; 0.501 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.230      ; 0.815      ;
+; 0.501 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.230      ; 0.815      ;
+; 0.501 ; TxD_state[0]                ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.230      ; 0.815      ;
+; 0.502 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[4]  ; clk          ; clk         ; 0.000        ; 0.041      ; 0.627      ;
+; 0.502 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.053      ; 0.639      ;
+; 0.505 ; BaudTickGen:tickgen|Acc[7]  ; BaudTickGen:tickgen|Acc[11] ; clk          ; clk         ; 0.000        ; 0.053      ; 0.642      ;
+; 0.505 ; BaudTickGen:tickgen|Acc[4]  ; BaudTickGen:tickgen|Acc[12] ; clk          ; clk         ; 0.000        ; 0.235      ; 0.824      ;
+; 0.506 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[9]  ; clk          ; clk         ; 0.000        ; 0.053      ; 0.643      ;
+; 0.506 ; BaudTickGen:tickgen|Acc[2]  ; BaudTickGen:tickgen|Acc[10] ; clk          ; clk         ; 0.000        ; 0.235      ; 0.825      ;
+; 0.507 ; BaudTickGen:tickgen|Acc[5]  ; BaudTickGen:tickgen|Acc[8]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.640      ;
+; 0.507 ; BaudTickGen:tickgen|Acc[3]  ; BaudTickGen:tickgen|Acc[6]  ; clk          ; clk         ; 0.000        ; 0.049      ; 0.640      ;
++-------+-----------------------------+-----------------------------+--------------+-------------+--------------+------------+------------+
+
+
+----------------------------------------------
+; Fast 1200mV 0C Model Metastability Summary ;
+----------------------------------------------
+No synchronizer chains to report.
+
+
++-------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                           ;
++------------------+---------+-------+----------+---------+---------------------+
+; Clock            ; Setup   ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+---------+-------+----------+---------+---------------------+
+; Worst-case Slack ; -1.616  ; 0.174 ; N/A      ; N/A     ; -3.000              ;
+;  clk             ; -1.616  ; 0.174 ; N/A      ; N/A     ; -3.000              ;
+; Design-wide TNS  ; -27.813 ; 0.0   ; 0.0      ; 0.0     ; -31.27              ;
+;  clk             ; -27.813 ; 0.000 ; N/A      ; N/A     ; -31.270             ;
++------------------+---------+-------+----------+---------+---------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Board Trace Model Assignments                                                                                                                                                                                                                                                                                                                                                                                    ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; Pin           ; I/O Standard ; Near Tline Length ; Near Tline L per Length ; Near Tline C per Length ; Near Series R ; Near Differential R ; Near Pull-up R ; Near Pull-down R ; Near C ; Far Tline Length ; Far Tline L per Length ; Far Tline C per Length ; Far Series R ; Far Pull-up R ; Far Pull-down R ; Far C ; Termination Voltage ; Far Differential R ; EBD File Name ; EBD Signal Name ; EBD Far-end ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; TxD           ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; TxD_done      ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+
+
++----------------------------------------------------------------------------+
+; Input Transition Times                                                     ;
++-------------------------+--------------+-----------------+-----------------+
+; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
++-------------------------+--------------+-----------------+-----------------+
+; a                       ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; b                       ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; TxD_start               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; clk                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_FLASH_nCE_nCSO~ ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_DATA0~          ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
++-------------------------+--------------+-----------------+-----------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1200mv 0c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; TxD           ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.07e-09 V                   ; 2.33 V              ; -0.00496 V          ; 0.223 V                              ; 0.086 V                              ; 2.9e-09 s                   ; 2.73e-09 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 3.07e-09 V                  ; 2.33 V             ; -0.00496 V         ; 0.223 V                             ; 0.086 V                             ; 2.9e-09 s                  ; 2.73e-09 s                 ; Yes                       ; Yes                       ;
+; TxD_done      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.07e-09 V                   ; 2.37 V              ; -0.00994 V          ; 0.186 V                              ; 0.028 V                              ; 4.98e-10 s                  ; 4.96e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 3.07e-09 V                  ; 2.37 V             ; -0.00994 V         ; 0.186 V                             ; 0.028 V                             ; 4.98e-10 s                 ; 4.96e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.67e-09 V                   ; 2.38 V              ; -0.0485 V           ; 0.167 V                              ; 0.096 V                              ; 2.95e-10 s                  ; 2.73e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.67e-09 V                  ; 2.38 V             ; -0.0485 V          ; 0.167 V                             ; 0.096 V                             ; 2.95e-10 s                 ; 2.73e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.18e-09 V                   ; 2.38 V              ; -0.00483 V          ; 0.152 V                              ; 0.012 V                              ; 4.81e-10 s                  ; 6.29e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.18e-09 V                  ; 2.38 V             ; -0.00483 V         ; 0.152 V                             ; 0.012 V                             ; 4.81e-10 s                 ; 6.29e-10 s                 ; Yes                       ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1200mv 85c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; TxD           ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.67e-07 V                   ; 2.33 V              ; -0.00269 V          ; 0.13 V                               ; 0.055 V                              ; 3.54e-09 s                  ; 3.29e-09 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.67e-07 V                  ; 2.33 V             ; -0.00269 V         ; 0.13 V                              ; 0.055 V                             ; 3.54e-09 s                 ; 3.29e-09 s                 ; Yes                       ; Yes                       ;
+; TxD_done      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.67e-07 V                   ; 2.35 V              ; -0.00942 V          ; 0.116 V                              ; 0.033 V                              ; 6.66e-10 s                  ; 6.27e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.67e-07 V                  ; 2.35 V             ; -0.00942 V         ; 0.116 V                             ; 0.033 V                             ; 6.66e-10 s                 ; 6.27e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.75e-07 V                   ; 2.35 V              ; -0.0109 V           ; 0.084 V                              ; 0.027 V                              ; 4.31e-10 s                  ; 3.61e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 3.75e-07 V                  ; 2.35 V             ; -0.0109 V          ; 0.084 V                             ; 0.027 V                             ; 4.31e-10 s                 ; 3.61e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.15e-07 V                   ; 2.35 V              ; -0.00712 V          ; 0.093 V                              ; 0.02 V                               ; 6.21e-10 s                  ; 7.9e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 6.15e-07 V                  ; 2.35 V             ; -0.00712 V         ; 0.093 V                             ; 0.02 V                              ; 6.21e-10 s                 ; 7.9e-10 s                  ; Yes                       ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Fast 1200mv 0c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; TxD           ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.64 V              ; -0.0117 V           ; 0.202 V                              ; 0.176 V                              ; 2.38e-09 s                  ; 2.22e-09 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.64 V             ; -0.0117 V          ; 0.202 V                             ; 0.176 V                             ; 2.38e-09 s                 ; 2.22e-09 s                 ; No                        ; Yes                       ;
+; TxD_done      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.71 V              ; -0.0317 V           ; 0.148 V                              ; 0.064 V                              ; 4.51e-10 s                  ; 4.15e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.71 V             ; -0.0317 V          ; 0.148 V                             ; 0.064 V                             ; 4.51e-10 s                 ; 4.15e-10 s                 ; No                        ; Yes                       ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.22e-08 V                   ; 2.74 V              ; -0.06 V             ; 0.158 V                              ; 0.08 V                               ; 2.68e-10 s                  ; 2.19e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 2.22e-08 V                  ; 2.74 V             ; -0.06 V            ; 0.158 V                             ; 0.08 V                              ; 2.68e-10 s                 ; 2.19e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.54e-08 V                   ; 2.7 V               ; -0.00943 V          ; 0.276 V                              ; 0.035 V                              ; 3.19e-10 s                  ; 4.99e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 3.54e-08 V                  ; 2.7 V              ; -0.00943 V         ; 0.276 V                             ; 0.035 V                             ; 3.19e-10 s                 ; 4.99e-10 s                 ; No                        ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clk        ; clk      ; 261      ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clk        ; clk      ; 261      ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No non-DPA dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths Summary                    ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 1     ; 1    ;
+; Unconstrained Input Port Paths  ; 2     ; 2    ;
+; Unconstrained Output Ports      ; 2     ; 2    ;
+; Unconstrained Output Port Paths ; 3     ; 3    ;
++---------------------------------+-------+------+
+
+
++-------------------------------------+
+; Clock Status Summary                ;
++--------+-------+------+-------------+
+; Target ; Clock ; Type ; Status      ;
++--------+-------+------+-------------+
+; clk    ; clk   ; Base ; Constrained ;
++--------+-------+------+-------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; TxD_start  ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; TxD         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; TxD_done    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; TxD_start  ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; TxD         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; TxD_done    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Timing Analyzer
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Copyright (C) 2020  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Wed Mar 10 18:30:33 2021
+Info: Command: quartus_sta SerialCoincidence3 -c SerialCoincidence3
+Info: qsta_default_script.tcl version: #1
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Critical Warning (332012): Synopsys Design Constraints File file not found: 'SerialCoincidence3.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name clk clk
+Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow 1200mV 85C Model
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -1.616
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -1.616             -27.813 clk 
+Info (332146): Worst-case hold slack is 0.385
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.385               0.000 clk 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000             -31.270 clk 
+Info: Analyzing Slow 1200mV 0C Model
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -1.391
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -1.391             -23.020 clk 
+Info (332146): Worst-case hold slack is 0.338
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.338               0.000 clk 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000             -31.270 clk 
+Info: Analyzing Fast 1200mV 0C Model
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -0.244
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -0.244              -2.289 clk 
+Info (332146): Worst-case hold slack is 0.174
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.174               0.000 clk 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000             -26.618 clk 
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 501 megabytes
+    Info: Processing ended: Wed Mar 10 18:30:35 2021
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
+
+
